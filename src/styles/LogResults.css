@@ -1,0 +1,11 @@
+.res-wrap{
+  display: flex;
+  width: 100%;
+  text-align: center;
+  background-color: #407871;
+  justify-content: space-evenly;
+}
+.res-p{
+  color: #eee;
+  font-size: 1.3rem;
+}

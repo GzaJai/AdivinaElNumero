@@ -1,0 +1,57 @@
+/*  
+#C9E1DE claro
+#407871 medio
+#39625E oscuro
+#264240 fondo
+#fb5600 boton
+#151844 boton hover
+ */
+
+
+.input-wrap{
+  display: flex;
+  flex-direction: column;
+}
+.input-label{
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.player-input{
+  color: #000;
+  padding: .5rem;
+  margin: .5rem 0 0;
+  border: none;
+  border-radius: 4px;
+  background: #C9E1DE;
+  box-shadow: inset 20px 20px 60px #abbfbd,
+              inset -20px -20px 60px #e7ffff;
+}
+.rungame-button{
+  width: max-content;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: #fb5600;
+  border-radius: 5px;
+  padding: .5rem;
+  margin: 1.4rem auto ;
+  cursor: pointer;
+  color: #FFF;
+}
+.rungame-button:hover{
+  background-color: #151844;
+}
+.res-titles-wrap{
+  display: flex;
+  text-align: center;
+  background-color: #407871;
+  margin: 0 0 .2rem;
+  border-radius: 4px;
+  padding: 0.3rem;
+  justify-content: space-evenly;
+}
+.res-title{
+  color: #eee;
+  font-weight: 700;
+  font-size: 1.3rem;
+  padding: 0 .3rem;
+}
