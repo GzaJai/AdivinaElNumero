@@ -5,8 +5,8 @@ import { getRandomNumber } from "../utils/getRadomNumber";
 import { getPlayerNumber } from "../utils/getPlayerNumber";
 import { intentoObjectCreator } from "../utils/intentoObjetoCreator";
 import LogResults from "./logResults";
+import Ganaste from "./Ganaste";
 import { inputHandler } from "../utils/inputEnterHandler";
-
 
 
 const LogicaJuego = () => {
@@ -51,7 +51,7 @@ const LogicaJuego = () => {
 
     setIntentosData((prevArray) => [...prevArray, newObject])
   }
-  const cilckHandle = ()=>{
+  const cilckHandle = () => {
     setData()
   }
 
@@ -75,6 +75,10 @@ const LogicaJuego = () => {
       </div>
         <button className="show-number" onClick={handleShowNumber}>Mostrar Número Oculto</button>
         { showNumber && (<p>{currentNumber}</p>) }
+        { finalizo && (
+          <Ganaste isOpen={finalizo} handleClose={()=> setFinalizo(false)}/>
+        )}
+        
     </>
   )
 }
