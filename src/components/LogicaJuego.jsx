@@ -12,6 +12,7 @@ import { inputHandler } from "../utils/inputEnterHandler";
 const LogicaJuego = () => {
   
   const [currentNumber, setCurrentNumber] = useState(0);
+  const [showNumber, setShowNumber] = useState(false);
   const [cantBien,setCantBien] = useState(0);
   const [cantReg,setCantReg] = useState(0);
   const [cantIntentos,setCantIntentos] = useState(0);
@@ -30,6 +31,9 @@ const LogicaJuego = () => {
     console.log(intentosData);
   }, [intentosData])
 
+  const handleShowNumber = () => {
+    setShowNumber(!showNumber)
+  }
 
   const updatePlayerNumber =()=>{
     setPlayerNumber(getPlayerNumber());
@@ -50,7 +54,6 @@ const LogicaJuego = () => {
   const cilckHandle = ()=>{
     setData()
   }
-  const renderIntentosData = intentosData.length!=0;
 
   return (
     <>
@@ -59,7 +62,6 @@ const LogicaJuego = () => {
         <span className="input-label"><i className='bx bxs-down-arrow'></i></span>
         <input className="player-input" type="number" 
         name="player-input" id="player-number" onChange={updatePlayerNumber}/>
-        {playerNumber!=0?<p>Tu numero es: {playerNumber}</p>:""}
       </div>
       <button id="runGameButton" className="rungame-button" onClick={cilckHandle}>Comenzar Juego</button>
       <div id="results-div">
@@ -71,6 +73,8 @@ const LogicaJuego = () => {
         {intentosData.map((element, index)=>{
             return(<LogResults key={index} numero={element.resultado.numero} bien={element.resultado.bien} regular={element.resultado.regular}/>)})}
       </div>
+        <button className="show-number" onClick={handleShowNumber}>Mostrar Número Oculto</button>
+        { showNumber && (<p>{currentNumber}</p>) }
     </>
   )
 }

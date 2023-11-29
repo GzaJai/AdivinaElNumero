@@ -22,9 +22,11 @@
   margin: .5rem 0 0;
   border: none;
   border-radius: 4px;
-  background: #C9E1DE;
-  box-shadow: inset 20px 20px 60px #abbfbd,
-              inset -20px -20px 60px #e7ffff;
+  background: #a2e7de;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: .1rem;
 }
 .rungame-button{
   width: max-content;
@@ -54,4 +56,20 @@
   font-weight: 700;
   font-size: 1.3rem;
   padding: 0 .3rem;
+}
+
+.show-number{
+  width: max-content;
+  font-size: .8rem;
+  font-weight: 700;
+  background-color: #009d88;
+  border-radius: 5px;
+  padding: .5rem;
+  margin: 1.4rem auto ;
+  cursor: pointer;
+  color: #FFF;
+}
+
+.show-number:hover{
+  background-color: #007a6a;
 }

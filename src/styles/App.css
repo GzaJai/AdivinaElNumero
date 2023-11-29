@@ -2,8 +2,8 @@
   color: #111;
 }
 .game-div{
-  width: 80%;
-  background-color:  #C9E1DE;
+  width: 60%;
+  background-color:  #45d0bd;
   margin: 10vh auto 30vh;
   padding: 3rem;
   display: flex;
@@ -28,7 +28,6 @@
   color: #fff;
   font-size: 20px;
   font-weight: 400;
-  
 }
 .more-info{
   width: max-content;
@@ -44,4 +43,7 @@
 .more-info:hover{
   color: #FFF;
   background-color: #151844;
+}
+.game-wrap{
+  overflow-y: hidden;
 }
