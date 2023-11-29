@@ -10,3 +10,10 @@
   font-size: 1.3rem;
   letter-spacing: .1rem;
 }
+
+@media (max-width: 600px) {
+  .res-wrap{
+    width: 70%;
+    margin: 0 auto;
+  }
+}

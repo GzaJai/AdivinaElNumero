@@ -10,6 +10,7 @@
 
 .input-wrap{
   display: flex;
+  margin: 2rem auto 0;
   flex-direction: column;
 }
 .input-label{
@@ -35,7 +36,7 @@
   background-color: #fb5600;
   border-radius: 5px;
   padding: .5rem;
-  margin: 1.4rem auto ;
+  margin: 3rem auto;
   cursor: pointer;
   color: #FFF;
 }
@@ -65,11 +66,21 @@
   background-color: #009d88;
   border-radius: 5px;
   padding: .5rem;
-  margin: 1.4rem auto ;
+  margin: 3rem auto 0;
   cursor: pointer;
   color: #FFF;
 }
 
 .show-number:hover{
   background-color: #007a6a;
+}
+
+@media (max-width: 600px) {
+  .input-wrap{
+    width: 70%;
+  }
+  .res-titles-wrap{
+    width: 70%;
+    margin: 0 auto;
+  }
 }

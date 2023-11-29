@@ -65,3 +65,28 @@
     margin-top: .5rem;
     font-weight: 500;
   }
+
+  @media (max-width: 600px) {
+    .modal-content{
+      margin-top: 20dvh;
+      width: 80%;
+      padding: 4rem 2rem 2rem;
+    }
+    .modal-text{
+      width: 100%;
+    }
+    .close-button {
+      height: 3rem;
+      width: 3rem;
+      line-height: 3rem;
+    }
+    .modal-title{
+      width: 80%;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      margin: auto;
+      font-size: 2rem;
+    }
+
+  }

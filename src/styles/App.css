@@ -4,7 +4,7 @@
 .game-div{
   width: 60%;
   background-color:  #45d0bd;
-  margin: 10vh auto 30vh;
+  margin: 10vh auto 20vh;
   padding: 3rem;
   display: flex;
   flex-direction: column;
@@ -46,4 +46,11 @@
 }
 .game-wrap{
   overflow-y: hidden;
+}
+
+@media (max-width: 600px) {
+  .game-div{
+    width: 100%;
+    margin: 5vh auto 30vh;
+  }
 }
