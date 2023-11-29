@@ -2,7 +2,7 @@ footer{
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  padding: 1em 0;
+  padding: 1em;
   margin-top: auto;
   background-color: #45d0bd ;
 }
@@ -21,9 +21,19 @@ footer{
 .links i{
   color: #111;
   font-size: 5rem;
-  margin: 0 1rem 0;
+  margin: 1.2rem 1rem 0;
 }
 .links i:hover{
   color: #3333DD;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  footer{
+    justify-content: space-between;
+  }
+  .links i{
+    font-size: 4rem;
+    margin: 2rem 1rem;
+  }
 }
