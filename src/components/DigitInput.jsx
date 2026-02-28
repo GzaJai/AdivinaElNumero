@@ -87,7 +87,7 @@ export function DigitInput({ value, onChange, disabled = false }) {
           onKeyDown={(e) => handleKeyDown(index, e)}
           onPaste={handlePaste}
           onChange={(e) => handleChange(index, e)}
-          className="w-16 h-20 md:w-20 md:h-24 text-center text-3xl md:text-4xl font-mono font-bold rounded-xl border-2 bg-secondary text-foreground transition-all duration-200 outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 focus:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-16 h-20 md:w-20 md:h-24 text-center text-3xl md:text-4xl font-mono font-bold rounded-xl border-2 border-indigo-500/60 bg-slate-900/40 text-foreground transition-all duration-200 outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 focus:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label={`Digito ${index + 1}`}
         />
       ))}
