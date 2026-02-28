@@ -1,89 +1,97 @@
-import React,{useState, useEffect} from "react";
-import { gameLogic } from "../utils/logica-juego";
-import '../styles/LogicaJuego.css'
-import { getRandomNumber } from "../utils/getRadomNumber";
-import { getPlayerNumber } from "../utils/getPlayerNumber";
-import { intentoObjectCreator } from "../utils/intentoObjetoCreator";
-import LogResults from "./logResults";
-import Ganaste from "./Ganaste";
-import { inputHandler } from "../utils/inputEnterHandler";
+import React,{useState, useEffect, useCallback} from "react";
+import { DigitInput } from "./DigitInput";
+import { GuessHistory } from "./GuessHistory";
+import { Eye, EyeOff } from 'lucide-react'
+import { cn } from "../utils/cn";
 
+function generateSecret() {
+    let result = ""
+    for (let i = 0; i < 4; i++) {
+      result += Math.floor(Math.random() * 10).toString()
+    }
+    return result
+  }
+
+  function evaluateGuess(guess, secret) {
+    let bien = 0
+    let regular = 0
+    const secretArr = secret.split("")
+    const guessArr = guess.split("")
+    const secretRemaining = []
+    const guessRemaining = []
+
+    for (let i = 0; i < 4; i++) {
+      if (guessArr[i] === secretArr[i]) {
+        bien++
+      } else {
+        secretRemaining.push(secretArr[i])
+        guessRemaining.push(guessArr[i])
+      }
+    }
+
+    for (const g of guessRemaining) {
+      const idx = secretRemaining.indexOf(g)
+      if (idx !== -1) {
+        regular++
+        secretRemaining.splice(idx, 1)
+      }
+    }
+
+    return { bien, regular }
+  }
 
 const LogicaJuego = () => {
   
-  const [currentNumber, setCurrentNumber] = useState(0);
-  const [showNumber, setShowNumber] = useState(false);
-  const [cantBien,setCantBien] = useState(0);
-  const [cantReg,setCantReg] = useState(0);
-  const [cantIntentos,setCantIntentos] = useState(0);
-  const [finalizo,setFinalizo] = useState(false);
-  const [playerNumber,setPlayerNumber] = useState(0);
-  const [intentosData, setIntentosData] = useState([]);
+  const [secret, setSecret] = useState(() => generateSecret())
+  const [digits, setDigits] = useState(["","","",""])
+  const [guesses, setGuesses] = useState([])
+  const [showSecret, setShowSecret] = useState(false);
+  
+  const handleSubmit = useCallback(() => {
+    const guessStr = digits.join("")
+    const result = evaluateGuess(guessStr, secret)
+    const newGuess = { number: guessStr, ...result }
+    
+    setGuesses((prev) => [...prev, newGuess])
+    setDigits(["","","",""])
 
-  const generateRandomNumber = () =>{
-    setCurrentNumber(getRandomNumber());
-  }
-  useEffect(()=>{
-    generateRandomNumber()
-    inputHandler(cilckHandle)
-  }, [])
-  useEffect(()=>{
-    console.log(intentosData);
-  }, [intentosData])
-
-  const handleShowNumber = () => {
-    setShowNumber(!showNumber)
-  }
-
-  const updatePlayerNumber =()=>{
-    setPlayerNumber(getPlayerNumber());
-  }
-  const setData =()=>{
-    let dataJuego = gameLogic(currentNumber, playerNumber);
-    setCantBien(dataJuego.cantBien);
-    setCantReg(dataJuego.cantRegular);
-    setCantIntentos(dataJuego.intentos);
-    setFinalizo(dataJuego.finalizo);
-    createIntentoObject(playerNumber, dataJuego.cantBien, dataJuego.cantRegular)
-  }
-  const createIntentoObject = (parNumero, parNumsBien, parNumsReg) =>{
-    let newObject = intentoObjectCreator(parNumero, parNumsBien, parNumsReg)
-
-    setIntentosData((prevArray) => [...prevArray, newObject])
-  }
-  const cilckHandle = () => {
-    setData()
-  }
+    if (result.bien === 4) {
+      setGameWon(true)
+    }
+    
+  }, [digits, secret])
 
   return (
     <>
-      <div className="input-wrap">
-        <label className="input-label" htmlFor="player-input">Ingresa tu número</label>
-        <span className="input-label"><i className='bx bxs-down-arrow'></i></span>
-        <input className="player-input" type="number" 
-        name="player-input" id="player-number" onChange={updatePlayerNumber}/>
-      </div>
-      <button id="runGameButton" className="rungame-button" onClick={cilckHandle}>Comenzar Juego</button>
-      <div id="results-div">
-        <div className="res-titles-wrap">
-          <p className="res-title numero">Número</p>
-          <p className="res-title bien">Bien</p>
-          <p className="res-title regular">Regular</p>
+      <div className="w-[90%] flex flex-col gap-4 items-center py-8 mt-8 mx-auto border border-indigo-500/60 rounded-2xl md:w-1/2">
+        <h2 className="text-lg font-semibold">Ingresa tu numero</h2>
+        <div className="flex flex-col gap-8 items-center">
+          <DigitInput value={digits} onChange={setDigits} disabled={false}/>
+          <button className="w-1/2 font-semibold p-4 bg-indigo-600/40 rounded-lg hover:bg-indigo-600 duration-75" onClick={handleSubmit}>Adivinar</button>
         </div>
-        {intentosData.map((element, index)=>{
-            return(<LogResults key={index} numero={element.resultado.numero} bien={element.resultado.bien} regular={element.resultado.regular}/>)})}
       </div>
-        <button className="show-number" onClick={handleShowNumber}>Mostrar Número Oculto</button>
-        { showNumber && (<p>{currentNumber}</p>) }
-        { finalizo && (
-          <Ganaste isOpen={finalizo} handleClose={()=> setFinalizo(false)}/>
-        )}
-        
+      <div className="w-[90%] flex flex-col gap-4 items-center py-8 mt-4 mx-auto border border-indigo-500/60 rounded-2xl md:w-1/2">
+        <GuessHistory guesses={guesses}/>
+      </div>
+      <div className="w-[80%] flex flex-col items-center mx-auto py-4">
+        <button className={cn("p-2 rounded-lg hover:bg-indigo-600 duration-100", showSecret && "text-indigo-400 hover:text-white")}
+        onClick={() => setShowSecret(!showSecret)}>
+          {showSecret ? (
+            <span className="flex items-center gap-2">
+              <EyeOff className="w-4 h-4"/>
+              Ocultar: <span>{secret}</span>
+            </span>
+          ) : (
+            <span className="flex items-center gap-2">
+              <Eye className="w-4 h-4"/>
+              Mostrar numero oculto
+            </span>
+          )}
+        </button>
+      </div>
     </>
+
   )
 }
 
-
 export default LogicaJuego
-
-
