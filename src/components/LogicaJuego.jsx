@@ -63,14 +63,14 @@ const LogicaJuego = () => {
 
   return (
     <>
-      <div className="w-[90%] flex flex-col gap-4 items-center py-8 mt-8 mx-auto border border-indigo-500/60 rounded-2xl">
+      <div className="w-[90%] flex flex-col gap-4 items-center py-8 mt-8 mx-auto border border-indigo-500/60 rounded-2xl md:w-1/2">
         <h2 className="text-lg font-semibold">Ingresa tu numero</h2>
         <div className="flex flex-col gap-8 items-center">
           <DigitInput value={digits} onChange={setDigits} disabled={false}/>
           <button className="w-1/2 font-semibold p-4 bg-indigo-600/40 rounded-lg hover:bg-indigo-600 duration-75" onClick={handleSubmit}>Adivinar</button>
         </div>
       </div>
-      <div className="w-[90%] flex flex-col gap-4 items-center py-8 mt-4 mx-auto border border-indigo-500/60 rounded-2xl">
+      <div className="w-[90%] flex flex-col gap-4 items-center py-8 mt-4 mx-auto border border-indigo-500/60 rounded-2xl md:w-1/2">
         <GuessHistory guesses={guesses}/>
       </div>
       <div className="w-[80%] flex flex-col items-center mx-auto py-4">

@@ -5,7 +5,7 @@ export function GuessHistory({ guesses }) {
   if (guesses.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
-        <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mb-4">
+        <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mb-4 md:w-10 md:h-10">
           <span className="text-2xl font-mono text-foreground">?</span>
         </div>
         <p className="text-sm">Tus intentos apareceran aqui</p>

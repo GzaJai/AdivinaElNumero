@@ -2,7 +2,7 @@ import { Github, Linkedin } from 'lucide-react'
 
 const Footer = () => {
   return (
-    <footer className='w-full py-4 flex items-center justify-between px-6 text-white/80'>
+    <footer className='w-full py-4 flex items-center justify-between px-6 text-white/80 md:w-1/3 md:mx-auto md:pt-16'>
       <p className='text-lg'>
         Hecho por <a href="https://github.com/GzaJai/" target="_blank" rel="noopener noreferrer"
           className='text-primary font-medium hover:underline'>
