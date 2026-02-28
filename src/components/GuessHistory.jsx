@@ -1,3 +1,4 @@
+import { Check, Minus } from "lucide-react"
 import { cn } from "../utils/cn"
 
 export function GuessHistory({ guesses }) {
@@ -14,12 +15,14 @@ export function GuessHistory({ guesses }) {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="grid grid-cols-3 gap-2 px-4 py-2 text-xs uppercase tracking-wider text-muted-foreground font-medium">
+      <div className="grid grid-cols-3 gap-2 px-4 py-2 text-xs uppercase tracking-wider text-white/70 font-medium">
         <span>Numero</span>
         <span className="text-center flex items-center justify-center gap-1">
+          <Check className="w-6 h-6"/>
             Bien
         </span>
         <span className="text-center flex items-center justify-center gap-1">
+          <Minus className="w-6 h-6"/>
           Regular
         </span>
       </div>
@@ -31,7 +34,6 @@ export function GuessHistory({ guesses }) {
             className={cn(
               "grid grid-cols-3 gap-2 px-4 py-3 rounded-lg transition-all duration-300",
               "bg-secondary/60 hover:bg-secondary",
-              index === guesses.length - 1 && "ring-1 ring-primary/30 bg-primary/5"
             )}
             style={{ animationDelay: `${index * 50}ms` }}
           >
