@@ -2,33 +2,30 @@ import React, { useState } from 'react'
 import './styles/App.css'
 import LogicaJuego from './components/LogicaJuego'
 import Footer from './components/Footer'
-import MasInfo from './components/MasInfo'
+import RulesDialog from './components/RulesDialog'
+import { QuestionMark } from './components/icons/questionMark'
+import { Sparkles } from 'lucide-react'
 
 
 const App = () => {
 
-  const [isMasInfoOpen, setIsMasInfoOpen] = useState(false)
+  const [showRules, setShowRules] = useState(false)
 
-  const handleSaberMas = () => {
-    setIsMasInfoOpen(!isMasInfoOpen);
-  }
   return (
-    <>
-      <div className='game-div'>
-        <div className="game-heading">
-          <h2 className='game-title'>Adivina el número</h2>
-          <div className="game-info-wrap">
-            <p className='game-info'>En este tienes que tratar de adivinar el número.</p>
-            <button className='more-info' onClick={handleSaberMas}>Saber más</button>
-          </div>
-        </div>
-        <MasInfo isOpen={isMasInfoOpen} handleClose={handleSaberMas}/>
-        <div className='game-wrap'>
-          <LogicaJuego />
-        </div>
+    <div className=''>
+      <header className='w-full flex fixed top-0 justify-between items-center px-8 py-8 border-b border-indigo-500/60 bg-slate-800'>
+        <Sparkles className='text-indigo-600'/>
+        <h1 className='text-2xl font-bold'>Adivina el número</h1>
+        <button onClick={() => setShowRules(true)} className='rounded-full p-1 bg-slate-400 hover:bg-indigo-400 duration-75'>
+          <QuestionMark width={24} height={24} stroke={'#ffffff'} strokeWidth={3}/>
+        </button>
+      </header>
+      <div className='mt-28'>
+        <RulesDialog isOpen={showRules} onClose={() => setShowRules(false)} title={"Como jugar"} />
+        <LogicaJuego />
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 
