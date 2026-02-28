@@ -3,7 +3,7 @@ import './styles/App.css'
 import LogicaJuego from './components/LogicaJuego'
 import Footer from './components/Footer'
 import RulesDialog from './components/RulesDialog'
-import { QuestionMark } from './components/icons/questionMark'
+import { QuestionMark } from './components/icons/QuestionMark'
 import { Sparkles } from 'lucide-react'
 
 
